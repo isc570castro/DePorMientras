@@ -90,7 +90,7 @@
         <td><?php echo $r->hora ?></td>
         <td><?php echo $r->duracion ?></td>
         <td><?php echo $r->notas ?></td>
-        <td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(<?php echo  "'".$r->tipo."'"; ?>,<?php echo  "'".$r->usuario."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?>,<?php echo  "'".$r->nombreOrganizacion."'"; ?>,<?php echo  "'".$r->fecha."'"; ?>,<?php echo  "'".$r->hora."'"; ?>,<?php echo  "'".$r->duracion."'"; ?>,<?php echo  "'".$r->notas."'"; ?>)"> Editar <span class="glyphicon glyphicon-refresh"></span></a></td>
+        <td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(<?php echo  $r->idActividad; ?>, <?php echo  "'".$r->tipo."'"; ?>,<?php echo  "'".$r->usuario."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?>,<?php echo  "'".$r->nombreOrganizacion."'"; ?>,<?php echo  "'".$r->fecha."'"; ?>,<?php echo  "'".$r->hora."'"; ?>,<?php echo  "'".$r->duracion."'"; ?>,<?php echo  "'".$r->notas."'"; ?>)"> Editar <span class="glyphicon glyphicon-refresh"></span></a></td>
       </tr>
     <?php endforeach; ?>
   </table>
@@ -125,11 +125,11 @@
             </div>
             
             <div class="form-group">
-              <input readonly class="form-control" value="0" name="idActividad" id="idActividad" type="hidden">
+              <input readonly class="form-control" value="0" name="idActividad" id="txtIdActividad">
             </div>
 
             <div class="form-group">
-              <input style="text-align:center; font-weight: bold;" readonly class="form-control" placeholder="Actividad" name="tipo" id="tipo">
+              <input style="text-align:center; font-weight: bold;" readonly class="form-control" placeholder="Actividad" name="tipo" id="txtTipo">
             </div>
 
 
@@ -209,7 +209,7 @@
       <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
         <button type="submit" class="btn btn-danger" name="Eliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar"><span class="glyphicon glyphicon-trash"></span></span></button>
         <input type="submit" class="btn btn-success" value="Guardar" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar2</button>    
       </div>
       <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
     </div>
@@ -222,9 +222,12 @@
 <script>
   tipoActividad = function ($tipo)
   {
-    $('#tipo').val($tipo);
+    $('#txtTipo').val($tipo);
   }  
-  function myFunctionEditar(tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
+
+  function myFunctionEditar(idActividad, tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
+
+    $('#txtIdActividad').val(idActividad);  
     $('#txtTipo').val(tipo); 
     $('#txtUsuario').val(usuario);  
     $('#txtTituloNegocio').val(tituloNegocio);
@@ -234,10 +237,9 @@
     $('#txtDuracion').val(duracion);
     $('#txtNotas').val(notas);
     $('#btnEliminar').show();
-    $('#labTitulo').val("Editar");
-
-
+    $('#labTitulo').html("Editar actividad");
   }
+
   function myFunctionNuevo() {
     $('#txtTipo').val(""); 
     $('#txtUsuario').val("");  
@@ -248,8 +250,7 @@
     $('#txtDuracion').val("");
     $('#txtNotas').val("");
     $('#btnEliminar').hide();
-    $('#labTitulo').html("Programar una");
-
+    $('#labTitulo').html("Programar actividad");
   }
 </script>
 

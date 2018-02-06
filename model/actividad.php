@@ -81,4 +81,39 @@ class Actividad
 			die($e->getMessage());
 		}
 	}
+	  //Metodo para actualizar actividades
+	public function Actualizar(Actividad $data)
+	{
+		try
+		{
+			$sql ="UPDATE actividades SET 
+			idNegocio=?,
+			idOrganizacion=?,
+			tipo=?,
+			fecha=?,
+			hora=?,
+			duracion=?,
+			notas=?,
+			idCliente=? 
+			WHERE idActividad=?";
+			$this->pdo->prepare($sql)
+			->execute(
+				array(
+					$data->idNegocio,
+					$data->idOrganizacion,
+					$data->tipo,
+					$data->fecha,
+					$data->hora,
+					$data->duracion,
+					$data->notas,
+					$data->idCliente,
+					$data->idActividad
+				)
+			);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 }
