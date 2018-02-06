@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: rgb(242, 243, 244);
+}
+#head{
+	margin-bottom: 0px;
+}
+#pan{
+	background-color: #fff;
+}
+#pan2{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#linea{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.admin1{
+	padding-top: 10px;
+}
+.admin2{
+	padding-top: 10px;
+}
+#admin3{
+	padding-top: 10px;
+}
+.admin4{
+	padding-top: 10px;
+}
+#admin5{
+	padding-top: 10px;
+}
+.admin6{
+	padding-top: 5px;
+}
+#admin7{
+	padding-top: 10px;
+}
+#admin8{
+	padding-top: 5px;
+}
+#pie{
+	background-color: #C92524;
+	padding: 10px;
+}
+.panel{
+	background-color: #fff;
+}
+.container{
+	color: #000000;
+}
+#tbl{
+	background-color: #FFFFFF;
+}
+#tblem{
+	background-color: #FFFFFF;
+}
+#notas{
+	display: block;
+  	box-sizing: padding-box;
+	resize: vertical;
+ 	overflow: hidden;
+
+  	border: 0;
+  	height: auto;
+  	min-height: 60px;
+	background-color: #FCF3CF;
+}
+.margen{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.margen2{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.containerperso{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+    background-color: #fff;
+    color: #000;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.half-rule{
+	margin: 0 0 0 0;
+	width: 100%;
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	color: #000000;
+}
+.wrapper{
+	width: 100%;
+}
+.contenido{
+	width: 100%;
+	height: auto;
+}
+.admin1{
+	padding-top: 10px;
+}
+.admin2{
+	padding-top: 10px;
+}
+#admin3{
+	padding-top: 10px;
+}
+.admin4{
+	padding-top: 10px;
+}
+#admin5{
+	padding-top: 10px;
+}
+.admin6{
+	padding-top: 5px;
+}
+#admin7{
+	padding-top: 10px;
+}
+#admin8{
+	padding-top: 5px;
+}
+#pie{
+	background-color: #C92524;
+	padding: 10px;
+}
+.panel{
+	background-color: #fff;
+}
+.container{
+	color: #000000;
+}
