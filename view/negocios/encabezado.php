@@ -1,12 +1,14 @@
 <div class="panel-body">
   <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4" id="pan2">
-    <div class="btn-group" role="group">
+    <div class="btn-group form-group" role="group">
       <a href="?c=negocios" class="btn btn-default btn-sm" data-toggle="tooltip" title="Embudo"><span class="glyphicon glyphicon-filter"></span></a>
       <a href="?c=negocios&a=lista" class="btn btn-default btn-sm" data-toggle="tooltip" title="Lista"><span class="glyphicon glyphicon-list"></span></a>
       <a href="?c=negocios&a=timeline" class="btn btn-default btn-sm" data-toggle="tooltip" title="Pronóstico"><span class="glyphicon glyphicon-time"></span></a>
     </div>
     <div class="btn-group">
-      <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#añadirnegocio" onClick="myFunction()"> Añadir Negocio</a>
+      <div class="form-group">
+        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#añadirnegocio" onClick="myFunction()"> Añadir Negocio</a>  
+      </div>
     </div>
   </div>
   
@@ -18,10 +20,14 @@
 
   <div class="col-xs-5 col-sm-4 col-md-5 col-lg-4" align="right">
     <div class="btn-group">
-      <a href="?c=administracion" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-cog"></span> Configurar</a>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Buscar">
+      </div> 
     </div>
     <div class="btn-group">
-      <a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Negocios</a>
+      <div class="form-group">
+        <a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Negocios</a>           
+      </div>
     </div>
   </div>
 </div>
@@ -120,4 +126,4 @@
     </div>     
     <!--fin modal de añadir negocio -->
 
-       <?php include($this->contenedor); ?>
+    <?php include($this->contenedor); ?>
