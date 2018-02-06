@@ -23,7 +23,12 @@
 </div>
 
 <div class="col-xs-4 col-sm-12 col-md-2 col-lg-4" align="right">
-  <div class="btn-group btn-sm">
+  <div class="btn-group">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Buscar">
+    </div> 
+  </div>
+  <div class="btn-group form-group btn-sm">
     <div class="dropdown">
      <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
      </button>
