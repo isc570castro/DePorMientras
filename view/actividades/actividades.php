@@ -12,27 +12,27 @@
       <?php $Contador = $this->model->Contador(); 
       if ($Contador == 1) { ?>
 
-       <h5><strong><?php echo ($Contador) ?> Actividad</strong></h5>
-       <?php 
+      <h5><strong><?php echo ($Contador) ?> Actividad</strong></h5>
+      <?php 
 
-     }else { ?>
-      <h5><strong><?php echo ($Contador) ?> Actividades</strong></h5>
+    }else { ?>
+    <h5><strong><?php echo ($Contador) ?> Actividades</strong></h5>
 
-      <?php } ?>
-    </div>
+    <?php } ?>
   </div>
+</div>
 
-  <div class="col-xs-4 col-sm-12 col-md-2 col-lg-4" align="right">
-    <div class="btn-group btn-sm">
-      <div class="dropdown">
-       <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
-       </button>
-       <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
-         <li><a href="#"> Exportar resultados del filtro </a></li> 
-       </ul>
-     </div>
+<div class="col-xs-4 col-sm-12 col-md-2 col-lg-4" align="right">
+  <div class="btn-group btn-sm">
+    <div class="dropdown">
+     <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
+     </button>
+     <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
+       <li><a href="#"> Exportar resultados del filtro </a></li> 
+     </ul>
    </div>
  </div>
+</div>
 </div>
 
 <div class="row">
@@ -105,7 +105,7 @@
     <div class="modal-content">
       <div class="modal-header bg-success">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><strong>Programar una actividad </strong></h4>
+        <h4 class="modal-title"><strong><label id="labTitulo"></label> </strong></h4>
       </div>
       <div class="modal-body">  
         <!-- Cuerpo --> 
@@ -207,13 +207,13 @@
     </div>
     <div class="modal-footer">
       <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
-      <button type="submit" class="btn btn-danger" name="Eliminar" data-toggle="tooltip" title="Eliminar organización"><span class="glyphicon glyphicon-trash"></span></span></button>
-       <input type="submit" class="btn btn-success" value="Guardar" >
-     </div>
-     <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-   </div>
- </div>
+        <button type="submit" class="btn btn-danger" name="Eliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar"><span class="glyphicon glyphicon-trash"></span></span></button>
+        <input type="submit" class="btn btn-success" value="Guardar" >
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+      </div>
+      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+    </div>
+  </div>
 </form>
 </div>
 </div>     
@@ -224,7 +224,7 @@
   {
     $('#tipo').val($tipo);
   }  
-    function myFunctionEditar(tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
+  function myFunctionEditar(tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
     $('#txtTipo').val(tipo); 
     $('#txtUsuario').val(usuario);  
     $('#txtTituloNegocio').val(tituloNegocio);
@@ -233,8 +233,12 @@
     $('#txtHora').val(hora);
     $('#txtDuracion').val(duracion);
     $('#txtNotas').val(notas);
+    $('#btnEliminar').show();
+    $('#labTitulo').val("Editar");
+
+
   }
-    function myFunctionNuevo() {
+  function myFunctionNuevo() {
     $('#txtTipo').val(""); 
     $('#txtUsuario').val("");  
     $('#txtTituloNegocio').val("");
@@ -243,6 +247,9 @@
     $('#txtHora').val("");
     $('#txtDuracion').val("");
     $('#txtNotas').val("");
+    $('#btnEliminar').hide();
+    $('#labTitulo').html("Programar una");
+
   }
 </script>
 
