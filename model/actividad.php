@@ -57,28 +57,114 @@ class Actividad
     //Metodo para registrar actividades
 	public function Registrar(Actividad $data)
 	{
+
+		$sql ="INSERT INTO actividades VALUES(?,?,?,?,?,?,?,?,?,?,0)";
+		$this->pdo->prepare($sql)
+		->execute(
+			array(
+				null,
+				$data->idUsuario,
+				$data->idNegocio,
+				$data->idOrganizacion,
+				$data->tipo,
+				$data->fecha,
+				$data->hora,
+				$data->duracion,
+				$data->notas,
+				$data->idCliente
+			)
+		);
+	}
+	
+	//Metodo para actualizar actividades
+	public function Actualizar(Actividad $data)
+	{
+		
+		$sql ="UPDATE actividades SET 
+		idNegocio=?,
+		idOrganizacion=?,
+		tipo=?,
+		fecha=?,
+		hora=?,
+		duracion=?,
+		notas=?,
+		idCliente=? 
+		WHERE idActividad=?";
+		$this->pdo->prepare($sql)
+		->execute(
+			array(
+				$data->idNegocio,
+				$data->idOrganizacion,
+				$data->tipo,
+				$data->fecha,
+				$data->hora,
+				$data->duracion,
+				$data->notas,
+				$data->idCliente,
+				$data->idActividad
+			)
+		);
+		
+	}
+
+	//Metodo para actualizar estado de actividad
+	public function CambiaEstado($idActividad, $estado)
+	{
+		
+		$sql ="UPDATE actividades SET estado=? WHERE idActividad=?";
+		$this->pdo->prepare($sql)
+		->execute(
+			array(
+				$estado,
+				$idActividad
+			)
+		);
+		
+	}
+
+	//Metodo para eliminar actividades
+	public function Eliminar($idActividad)
+	{
+		$sql ="DELETE FROM actividades WHERE idActividad=?";
+		$this->pdo->prepare($sql)
+		->execute(
+			array(
+				$idActividad
+			)
+		);
+	}
+
+	//Metodo para listar personas por negocio
+	public function ListarPersonasPorNegocio($idNegocio)
+	{
 		try
 		{
-			$sql ="INSERT INTO actividades VALUES(?,?,?,?,?,?,?,?,?,?)";
-			$this->pdo->prepare($sql)
-			->execute(
-				array(
-					null,
-					$data->idUsuario,
-					$data->idNegocio,
-					$data->idOrganizacion,
-					$data->tipo,
-					$data->fecha,
-					$data->hora,
-					$data->duracion,
-					$data->notas,
-					$data->idCliente
-				)
-			);
+			$stm = $this->pdo->prepare("SELECT personas.nombrePersona, personas.idCliente FROM personas, negocios, pertenece  WHERE personas.idCliente = pertenece.idCliente AND pertenece.idNegocio = negocios.idNegocio AND negocios.idNegocio=?");
+
+			$stm->execute(array($idNegocio));
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
 		catch(Exception $e)
 		{
 			die($e->getMessage());
 		}
 	}
+
+   //Metodo para listar organizaciones por negocio
+	public function ListarOrganizacionesPorNegocio($idNegocio)
+	{
+		try
+		{
+			$stm = $this->pdo->prepare("SELECT organizaciones.nombreOrganizacion, organizaciones.idOrganizacion FROM organizaciones, negocios  WHERE organizaciones.idOrganizacion = negocios.idOrganizacion AND negocios.idNegocio=?");
+
+			$stm->execute(array($idNegocio));
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	} 
 }

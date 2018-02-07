@@ -15,6 +15,7 @@
 
 <body>
 
+ <div  id="mensajejs"></div>
   <?php if (isset($this->mensaje) && !isset($this->error)){ ?>
   <div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom: 0px;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
@@ -95,6 +96,7 @@
   <div class="panel-default" id="pan">
    <?php include($page); ?>
  </div>
+
 </nav>
 <!--Fin de Encabezado--> 
 
@@ -119,7 +121,8 @@
 <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript" src="assets/js/dropzone.js"></script>
 <script type="text/javascript" src="assets/js/autoExpand.js"></script>
-<script type="text/javascript" src="assets/select2/dist/js/select2.full.js"></script>
+<script type="text/javascript" src="assets/select2/dist/js/select2.js"></script>
+<script src="assets//validation/parsley.min.js"></script>
 
 
 <!--

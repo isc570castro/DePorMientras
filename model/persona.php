@@ -39,6 +39,7 @@ class Persona
 			die($e->getMessage());
 		}
 	}
+
 	//Metodo para contar las personas
 	public function Contador()
 	{
