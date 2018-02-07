@@ -18,18 +18,6 @@
 			<div class="btn-group" role="group" align="left">
 				<div class="btn-group btn-sm">
 					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							<span class="glyphicon glyphicon-th-large"> </span>
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-							<li><a href="#"><h5>Propietario y Seguidores</h5></a></li>
-							<li><a href="#">Empresa Completa</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="btn-group btn-sm">
-					<div class="dropdown">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu2">
@@ -73,34 +61,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-6" align="left">
-			<div class="btn-group" role="group">
-				<a href="#" class="btn btn-link dropdown-toggle" id="dropdownsolicitud" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solicitudes de Cotización</a>
-				<ul class="dropdown-menu btn-sm" aria-labelledby="dropdownsolicitud">
-					<div class="container" style="width: 300px">
-						<div class="col-lg-12">
-							<li><p class="help-block">Etapas del Embudo</p></li>
-							<li>
-								<select class="form-control">
-									<option>Leads</option>
-									<option>Contacto/Oportunidades Visualizadas</option>
-									<option>Solicitudes de Cotización</option>
-									<option>Autorización</option>
-									<option>Cotización/Propuesta</option>
-									<option>Pedido</option>
-									<option>Realizando/se</option>
-									<option>Facturación</option>
-									<option>Pagado</option>
-									<option>Perdido</option>
-								</select>
-							</li>
-							<hr size="1">
-						</div>
-					</div>
-				</ul>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-6" align="right">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="right">
 			<div class="btn-group" role="group">
 				<a href="" class="btn btn-link dropdown-toggle" id="dropdownfecha" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Establecer fecha de cierre</a>
 				<ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownfecha">

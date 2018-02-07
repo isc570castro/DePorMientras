@@ -24,12 +24,18 @@
         <input type="text" class="form-control" placeholder="Buscar">
       </div> 
     </div>
-    <div class="btn-group">
-      <div class="form-group">
-        <a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Negocios</a>           
-      </div>
-    </div>
-  </div>
+    <div class="btn-group form-group btn-sm">
+      <div class="dropdown">
+       <button class="btn btn-warning dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+        Mostrar Negocios</button>
+       <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
+         <li><a href="#">AMMMEC</a></li>
+         <li><a href="#">DINGO</a></li> 
+         <li><a href="#">PAULS FANS</a></li> 
+       </ul>
+     </div>
+   </div>
+ </div>
 </div>
 
 
@@ -95,30 +101,18 @@
                     <option>Perdido</option>
                   </select>
                 </div>
-                <h5>Propietario</h5>
                 <div class="form-group">
-                  <select class="form-control">
-                    <option>Felipe(tú)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <h5>Fecha de cierre prevista</h5> 
-                  <input type="text" class="form-control" id="datepicker">
+                  <h5>Fecha de cierre prevista</h5>
+                  <input type="date" class="form-control">
                 </div>
               </form>
               <!-- fin cuerpo -->
             </div>
             <div class="modal-footer">
-              <div class="col-lg-8">
-                <select class="form-control">
-                  <option>Empresa Completa</option>
-                  <option><label></label>Propietario y Seguidores</option>
-                </select>
+              <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
+                <input type="submit" class="btn btn-success" value="Guardar" >
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
               </div>
-              <div class="col-lg-4">
-                <input type="submit" class="btn btn-success" value="Guardar">
-              </div>
-              <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
             </div>
           </div>
         </form>

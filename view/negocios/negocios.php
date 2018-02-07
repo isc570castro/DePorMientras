@@ -1,4 +1,4 @@
-<style>
+<!--<style>
   #sortable1, #sortable2, #sortable3,#sortable4 {
     border: 0px solid #eee;
     width: 142px;
@@ -23,7 +23,7 @@
     height: 50px;
     background-color: rgb(242, 243, 244);
   }
-</style>
+</style>-->
 
 
 
@@ -40,36 +40,37 @@
           <td><strong>Relizando</strong></td>
           <td><strong>Facturación</strong></td>
           <td><strong>Pagado</strong></td>
-          <td><strong>Perdido</strong></td>
+          <!--<td><strong>Perdido</strong></td>-->
         </tr>
         <tr>
           <td>
             <ul id="sortable1" class="connectedSortable">
-              <li class="ui-state-default"><span class="ui-icon ui-icon-alert"></span>Item 1</li>
-              <li class="ui-state-highlight"><span class="ui-icon ui-icon-circle-close"></span>Item 2</li>
-              <li class="ui-state-focus"><span class="ui-icon ui-icon-circle-plus"></span>Item 3</li>
-              <li class="ui-widget-header"><span class="ui-icon ui-icon-check"></span>Item 4</li>
+              <li class="list-group-item list-group-item-success">Item 1</li>
+              <li class="list-group-item list-group-item-warning">Item 2</li>
+              <li class="list-group-item list-group-item-danger">Item 3</li>
+              <li class="list-group-item list-group-item-info">Item 4</li>
             </ul>
           </td>
           <td>
             <ul id="sortable2" class="connectedSortable">
-              <li class="ui-state-active">Item 5</li>
-              <li class="ui-state-error">Item 6</li>
-              <li class="ui-priority-primary">Item 7</li>
-              <li class="ui-priority-secondary">Item 8</li>
+              <li class="list-group-item list-group-item-success">Item 5</li>
+              <li class="list-group-item list-group-item-success">Item 6</li>
+              <li class="list-group-item list-group-item-success">Item 7</li>
+              <li class="list-group-item list-group-item-success">Item 8</li>
             </ul>
           </td>
           <td>
             <ul id="sortable3" class="connectedSortable">
-              <li class="ui-widget-shadow">Item 9</li>
-              <li class="">Item 10</li>
-              <li class="">Item 11</li>
-              <li class="list-group-item">Item 12</li>
-            </ul>
+              <li class="list-group-item list-group-item-success">Item 9</li>
+              <li class="list-group-item list-group-item-success">Item 10</li>
+              <li class="list-group-item list-group-item-success">Item 11</li>
+              <li class="list-group-item list-group-item-success">
+                <button class="btn btn-block btn-link">AMMMEC</button>
+              </li>
           </td>
           <td>
             <ul id="sortable4" class="connectedSortable">
-              <li class="list-group-item list-group-item-success"><span class="ui-icon ui-icon-plusthick"></span>Item 13</li>
+              <li class="list-group-item list-group-item-success">Item 13</li>
               <li class="list-group-item list-group-item-info">Item 14</li>
               <li class="list-group-item list-group-item-warning">Item 15</li>
               <li class="list-group-item list-group-item-danger">Item 16</li>
@@ -77,7 +78,7 @@
           </td>
           <td>
             <ul id="sortable5" class="connectedSortable">
-              <li class="list-group-item list-group-item-success"><span class="ui-icon    ui-icon-circle-zoomout"></span>Item 17</li>
+              <li class="list-group-item list-group-item-success"><span class="ui-icon ui-icon-circle-zoomout"></span>Item 17</li>
               <li class="list-group-item list-group-item-info">Item 18</li>
               <li class="list-group-item list-group-item-warning">Item 19</li>
               <li class="list-group-item list-group-item-danger">Item 20</li>
@@ -85,44 +86,45 @@
           </td>
           <td>
             <ul id="sortable6" class="connectedSortable">
-              <li class="list-group-item">Item 21</li>
-              <li class="list-group-item">Item 22</li>
-              <li class="list-group-item">Item 23</li>
-              <li class="list-group-item">Item 24</li>
+              <li class="list-group-item list-group-item-success">Item 21</li>
+              <li class="list-group-item list-group-item-success">Item 22</li>
+              <li class="list-group-item list-group-item-success">Item 23</li>
+              <li class="list-group-item list-group-item-success">Item 24</li>
             </ul>
           </td>
           <td>
             <ul id="sortable7" class="connectedSortable">
-              <li class="list-group-item">Item 25</li>
-              <li class="list-group-item">Item 26</li>
-              <li class="list-group-item">Item 27</li>
-              <li class="list-group-item">Item 28</li>
+              <li class="list-group-item list-group-item-success">Item 25</li>
+              <li class="list-group-item list-group-item-success">Item 26</li>
+              <li class="list-group-item list-group-item-success">Item 27</li>
+              <li class="list-group-item list-group-item-success">Item 28</li>
             </ul>
           </td>
           <td>
             <ul id="sortable8" class="connectedSortable">
-              <li class="list-group-item">Item 29</li>
-              <li class="list-group-item">Item 30</li>
-              <li class="list-group-item">Item 31</li>
-              <li class="list-group-item">Item 32</li>
+              <li class="list-group-item list-group-item-success">Item 29</li>
+              <li class="list-group-item list-group-item-success">Item 30</li>
+              <li class="list-group-item list-group-item-success">Item 31</li>
+              <li class="list-group-item list-group-item-success">Item 32</li>
             </ul>
           </td>
           <td>
             <ul id="sortable9" class="connectedSortable">
-              <li class="list-group-item">Item 33</li>
-              <li class="list-group-item">Item 34</li>
-              <li class="list-group-item">Item 35</li>
-              <li class="list-group-item">Item 36</li>
+              <li class="list-group-item list-group-item-success">Item 33</li>
+              <li class="list-group-item list-group-item-success">Item 34</li>
+              <li class="list-group-item list-group-item-success">Item 35</li>
+              <li class="list-group-item list-group-item-success">Item 36</li>
             </ul>
           </td>
+          <!--
           <td>
             <ul id="sortable10" class="connectedSortable">
-              <li class="list-group-item">Item 37</li>
-              <li class="list-group-item">Item 38</li>
-              <li class="list-group-item">Item 39</li>
-              <li class="list-group-item">Item 40</li>
+              <li class="list-group-item list-group-item-success">Item 37</li>
+              <li class="list-group-item list-group-item-success">Item 38</li>
+              <li class="list-group-item list-group-item-success">Item 39</li>
+              <li class="list-group-item list-group-item-success">Item 40</li>
             </ul>
-          </td>
+          </td>-->
         </tr>
       </table>
     </div>
