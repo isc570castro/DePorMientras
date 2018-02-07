@@ -24,17 +24,18 @@
         <input type="text" class="form-control" placeholder="Buscar">
       </div> 
     </div>
-    <div class="btn-group form-group btn-sm">
+
+    <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
       <div class="dropdown">
        <button class="btn btn-warning dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-        Mostrar Negocios</button>
+       Ver Negocios</button>
        <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
          <li><a href="#">AMMMEC</a></li>
          <li><a href="#">DINGO</a></li> 
          <li><a href="#">PAULS FANS</a></li> 
        </ul>
      </div>
-   </div>
+   </div> 
  </div>
 </div>
 
@@ -72,10 +73,22 @@
                   <h5>Título del negocio</h5>
                   <input type="text" class="form-control">
                 </div>
-                <h5>Valor del Negocio</h5>
+
                 <div class="row">
                   <div class="form-group">
-                    <div class="col-xs-4 col-sm-4" style="width: 40%">
+                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">
+                      <h5>Valor del Negocio</h5>
+                    </div>
+
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" style="padding-left: 10px;">
+                      <h5>Tipo de Moneda</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col-xs-4 col-sm-4" style="width: 40%; padding-right: 0px">
                       <input type="text" class="form-control" maxlength="12">
                     </div>
                     <div class="col-xs-8 col-sm-8" style="width: 60%">
@@ -83,9 +96,10 @@
                         <option>US Dollar (USD)</option>
                         <option>Pesos Méxicanos (MXN)</option>
                       </select>
-                    </div>
+                    </div>                
                   </div>
                 </div>
+
                 <h5>Etapa del embudo</h5>
                 <div class="form-group">
                   <select class="form-control">
