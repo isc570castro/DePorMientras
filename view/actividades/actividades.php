@@ -86,7 +86,7 @@
     </tr>
     <?php foreach($this->model->Listar() as $r): ?>
       <tr>
-        <td><input type="checkbox"></td>
+        <td><input type="checkbox" id="checkEstado" <?php if($r->estado==1){ ?> checked <?php } ?> onclick="cambiaEstado(<?php echo $r->idActividad; ?>)"></td>
         <td><?php echo $r->tipo ?></td>
         <td><?php echo $r->usuario ?></td>
         <td><?php echo $r->tituloNegocio ?></td>
@@ -95,7 +95,7 @@
         <td><?php echo $r->hora ?></td>
         <td><?php echo $r->duracion ?></td>
         <td><?php echo $r->notas ?></td>
-        <td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(<?php echo  $r->idActividad; ?>, <?php echo  "'".$r->tipo."'"; ?>,<?php echo  "'".$r->usuario."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?>,<?php echo  "'".$r->nombreOrganizacion."'"; ?>,<?php echo  "'".$r->fecha."'"; ?>,<?php echo  "'".$r->hora."'"; ?>,<?php echo  "'".$r->duracion."'"; ?>,<?php echo  "'".$r->notas."'"; ?>)"> Editar <span class="glyphicon glyphicon-refresh"></span></a></td>
+        <td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(<?php echo  $r->idActividad; ?>, <?php echo  "'".$r->tipo."'"; ?>,<?php echo  "'".$r->usuario."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?>,<?php echo  "'".$r->nombreOrganizacion."'"; ?>,<?php echo  "'".$r->fecha."'"; ?>,<?php echo  "'".$r->hora."'"; ?>,<?php echo  "'".$r->duracion."'"; ?>,<?php echo  "'".$r->notas."'"; ?>)"> <span class="glyphicon glyphicon-refresh"></span></a></td>
       </tr>
     <?php endforeach; ?>
   </table>
@@ -117,6 +117,11 @@
 
         <form action="" method="post">
           <div class="form-group">
+
+            <div class="form-group">
+              <input type="hidden" class="form-control" value="0" name="idActividad" id="txtIdActividad" readonly>
+            </div>
+
             <div class="form-group">
               <div class="btn-group btn-group-sm" role="group" aria-label="...">
                 <button type="button" class="btn btn-default" data-toggle="tooltip" title="Llamada" onclick="tipoActividad('Llamada');"><span class="glyphicon glyphicon-earphone"></span></button>
@@ -130,19 +135,13 @@
             </div>
             
             <div class="form-group">
-              <input readonly class="form-control" value="0" name="idActividad" id="txtIdActividad">
-            </div>
-
-            <div class="form-group">
               <input style="text-align:center; font-weight: bold;" readonly class="form-control" placeholder="Actividad" name="tipo" id="txtTipo">
             </div>
 
-
             <div class="form-group">
               <font size="1">FECHA</font>
-              <input type="date" class="form-control" name="fecha" id="txtFecha" placeholder="Fecha de actividad">
+              <input required type="date" class="form-control" name="fecha" id="txtFecha" placeholder="Fecha de actividad">
             </div>
-
 
             <div class="row">
               <div class="form-group">
@@ -162,7 +161,7 @@
                  <input type="time" class="form-control" maxlength="12" name="hora" id="txtHora">
                </div>
                <div class="col-xs-6 col-sm-6 col-lg-6">
-                 <input type="text" class="form-control" maxlength="12" name="duracion" id="txtDuracion" placeholder="Ejem: 1 h">
+                 <input type="text" class="form-control" maxlength="12" name="duracion" id="txtDuracion" placeholder="Ejem: 1 h" required>
                </div>
              </div>
            </div><br>
@@ -175,7 +174,8 @@
             <font size="1">VINCULADO A</font>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-briefcase"></span></span>
-              <select class="form-control" name="idNegocio" id="txtIdNegocio">
+              <select class="form-control" name="idNegocio" id="selectIdNegocio"  onchange="listarPersonasPorNegocio()">
+                <option>Seleccione un negocio</option>
                 <?php foreach ($this->modelNegocio->Listar() as $negocio): ?>
                   <option value="<?php echo $negocio->idNegocio; ?>"><?php echo $negocio->tituloNegocio; ?></option>
                 <?php endforeach; ?>
@@ -186,43 +186,83 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-              <select class="form-control" name="idContacto" id="idContacto">
-                <?php foreach ($this->modelPersona->Listar() as $persona): ?>
-                  <option value="<?php echo $persona->idCliente; ?>"><?php echo $persona->nombrePersona; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
+              <select class="form-control" name="idContacto" id="selectIdPersonas">
+               <option value="">Seleccione una persona</option>
+               <?php foreach ($this->modelPersona->Listar() as $persona): ?>
+                <option value="<?php echo $persona->idCliente; ?>"><?php echo $persona->nombrePersona; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tower"></span></span>
-              <select class="form-control" name="idOrganizacion" id="txtIdOrganizacion">
-                <?php foreach ($this->modelOrganizacion->Listar() as $organizacion): ?>
-                  <option value="<?php echo $organizacion->idOrganizacion; ?>"><?php echo $persona->nombreOrganizacion; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-          </div>
-
         </div>
-      </form>
 
-      <!-- fin cuerpo --> 
-    </div>
-    <div class="modal-footer">
-      <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
-        <button type="submit" class="btn btn-danger" name="Eliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar"><span class="glyphicon glyphicon-trash"></span></span></button>
-        <input type="submit" class="btn btn-success" value="Guardar" >
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar2</button>    
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-tower"></span></span>
+            <select class="form-control" name="idOrganizacion" id="selectIdOrganizaciones">
+              <option value="">Seleccione una organizacion</option>
+              <?php foreach ($this->modelOrganizacion->Listar() as $organizacion): ?>
+                <option value="<?php echo $organizacion->idOrganizacion; ?>"><?php echo $organizacion->nombreOrganizacion; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+
       </div>
-      <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+    </form>
+    <div class="respuesta2">
     </div>
+
+    <div class="respuesta3">
+    </div>
+
+    <!-- fin cuerpo --> 
   </div>
+  <div class="modal-footer">
+    <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
+
+      <a href="#" id="" class="btn btn-danger" data-toggle="modal" data-target="#mEliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar" onclick="myFunctionEliminar()"><span class="glyphicon glyphicon-trash"></span></a>
+
+      <input type="submit" class="btn btn-success" value="Guardar" >
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+    </div>
+    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+  </div>
+</div>
 </form>
 </div>
 </div>     
 <!--fin modal de añadir negocio -->
+
+
+<!--Inicio modal de añadir negocio -->
+<div class="modal fade" id="mEliminar" role="dialog">   
+  <div class="modal-dialog">
+   <form  method="post" action="index.php?c=Actividades&a=Eliminar" enctype="multipart/form-data">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><strong><label id="labTitulo"></label> </strong></h4>
+      </div>
+      <div class="modal-body">  
+        <!-- Cuerpo --> 
+        <p style="font-size: 20px;">¿Esta seguro que desea eliminar la actividad?</p>
+        <input type="text" id="txtIdActividadE" name="idActividad" hidden>
+        <!-- fin cuerpo --> 
+      </div>
+      <div class="modal-footer">
+        <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
+          <input type="submit" class="btn btn-success" value="Eliminar">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+        </div>
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+      </div>
+    </div>
+  </form>
+</div>
+</div>     
+<!--fin modal de añadir negocio -->
+
 
 <script>
   tipoActividad = function ($tipo)
@@ -257,5 +297,67 @@
     $('#btnEliminar').hide();
     $('#labTitulo').html("Programar actividad");
   }
+
+  function myFunctionEliminar(){
+    var idActividad = $('#txtIdActividad').val();
+    $('#txtIdActividadE').val(idActividad);  
+  }
+
+  listarPersonasPorNegocio = function (idNegocio){
+    var idNegocio = $('#selectIdNegocio').val();
+    datos = {"idNegocio":idNegocio};
+    $.ajax({
+      url: "index.php?c=Actividades&a=ListarPersonasPorNegocio",
+      type: "POST",
+      data: datos
+    }).done(function(respuesta){
+      console.log(JSON.stringify(respuesta));
+      $("#selectIdPersonas").empty();
+      var selector = document.getElementById("selectIdPersonas");
+      selector.options[0] = new Option("Seleccione la persona de contacto","");
+      for (var i in respuesta) {
+        var j=parseInt(i)+1;
+        selector.options[j] = new Option(respuesta[i].nombrePersona,respuesta[i].idCliente);
+      }
+      var selector2 = document.getElementById("selectIdOrganizaciones");
+      selector2.options[0] = new Option("Seleccione la organización","");
+
+      //$(".respuesta2").html("Personas:<br><pre>"+JSON.stringify(respuesta, null, 2)+"</pre>");
+
+      listarOrganizacionesPorNegocio(idNegocio);
+    });
+  }
+
+  listarOrganizacionesPorNegocio = function (idNegocio){
+    var idNegocio = $('#selectIdNegocio').val();
+    datos = {"idNegocio":idNegocio};
+    $.ajax({
+      url: "index.php?c=Actividades&a=ListarOrganizacionesPorNegocio",
+      type: "POST",
+      data: datos
+    }).done(function(respuesta){
+      console.log(JSON.stringify(respuesta));
+       $("#selectIdOrganizaciones").empty();
+      var selector = document.getElementById("selectIdOrganizaciones");
+      for (var i in respuesta) {
+        selector.options[0] = new Option(respuesta[i].nombreOrganizacion,respuesta[i].idOrganizacion);
+      }
+      //$(".respuesta3").html("Organizaciones:<br><pre>"+JSON.stringify(respuesta, null, 2)+"</pre>");
+    });
+  }
+
+  cambiaEstado = function(idActividad){
+   if( $('#checkEstado').prop('checked') ) 
+    var estado=0;
+  else estado=1; 
+  datos = {"idActividad":idActividad, "estado":estado};
+  $.ajax({
+    url: "index.php?c=Actividades&a=CambiaEstado",
+    type: "POST",
+    data: datos
+  }).done(function(respuesta){
+      $("#mensajejs").html('<div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom: 0px;"><button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button><strong><center>'+respuesta+'</center></strong></div>');
+  });
+}
 </script>
 

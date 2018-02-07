@@ -33,6 +33,9 @@ class ActividadesController{
 	public function Guardar(){
 		try
 		{
+			if (!isset($_REQUEST['idActividad'])){
+				header("Location: index.php?c=Actividades");
+			}
 			$actividad= new Actividad();
 			$actividad->idActividad=$_REQUEST['idActividad'];
 			$actividad->idUsuario=2;
@@ -61,5 +64,65 @@ class ActividadesController{
 			$this->mensaje= "Se ha producido un error al guardar la actividad";
 			$this->Index();
 		}	
+	}
+
+	public function Eliminar(){
+		try
+		{
+			if (!isset($_REQUEST['idActividad'])){
+				header("Location: index.php?c=Actividades");
+			}
+			$idActividad=$_REQUEST['idActividad'];
+			$this->model->Eliminar($idActividad);
+			$this->mensaje="Se elimino correctamente la actividad";
+			$this->Index();
+		}
+		catch(Exception $e)
+		{
+			//die($e->getMessage());
+			$this->error=true;
+			$this->mensaje= "Se ha producido un error al eliminar la actividad";
+			$this->Index();
+		}	
+	}
+
+
+	//Metodo para listar personas en base al negocio
+	public function ListarPersonasPorNegocio(){
+		header('Content-Type: application/json');
+		$idNegocio=$_REQUEST['idNegocio'];
+		$datos = array();
+		foreach ($this->model->ListarPersonasPorNegocio($idNegocio) as $persona):
+			$row_array['idCliente']  = $persona->idCliente;
+			$row_array['nombrePersona']  = $persona->nombrePersona;
+			array_push($datos, $row_array);
+		endforeach;		
+		echo json_encode($datos, JSON_FORCE_OBJECT);
+	}
+
+	//Metodo para listar organizaciones en base al negocio
+	public function ListarOrganizacionesPorNegocio(){
+		header('Content-Type: application/json');
+		$idNegocio=$_REQUEST['idNegocio'];
+		$datos = array();
+		foreach ($this->model->ListarOrganizacionesPorNegocio($idNegocio) as $organizacion):
+			$row_array['idOrganizacion']  = $organizacion->idOrganizacion;
+			$row_array['nombreOrganizacion']  = $organizacion->nombreOrganizacion;
+			array_push($datos, $row_array);
+		endforeach;
+		
+		echo json_encode($datos, JSON_FORCE_OBJECT);
+
+	}
+
+	//Metodo para cambiar el estado con checkbox
+	public function CambiaEstado(){
+		$idActividad=$_REQUEST['idActividad'];
+		$estado=$_REQUEST['estado'];
+		if($estado==1)
+			$this->model->CambiaEstado($idActividad,0);
+		else
+			$this->model->CambiaEstado($idActividad,1);
+		    echo $this->mensaje="Se ha actualizado correctamente el estado";
 	}
 }
