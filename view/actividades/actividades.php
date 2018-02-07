@@ -28,7 +28,7 @@
       <input type="text" class="form-control" placeholder="Buscar" id="buscar" onkeyup="consultas();">
     </div> 
   </div>
-  <div class="btn-group form-group btn-sm">
+  <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
     <div class="dropdown">
      <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
      </button>
@@ -41,7 +41,7 @@
 </div>
 
 <div class="row">
- <div class="col-xs-6 col-lg-6">
+ <div class="col-xs-6 col-lg-6" style="padding-right: 0px;">
   <div class="btn-group btn-group-sm" role="group" aria-label="...">
     <button type="button" class="btn btn-default">Todas</button>
     <button type="button" class="btn btn-default" data-toggle="tooltip" title="Llamada"><span class="glyphicon glyphicon-earphone"></span></button>
