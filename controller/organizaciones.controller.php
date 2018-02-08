@@ -1,5 +1,5 @@
 <?php 
-require_once 'model/organizaciones.php';
+require_once 'model/organizacion.php';
 
 class OrganizacionesController{
 
@@ -8,7 +8,7 @@ class OrganizacionesController{
   public $mensaje;
   
   public function __CONSTRUCT(){
-     $this->model = new Organizaciones();
+     $this->model = new Organizacion();
  }
 
  public function Index(){
