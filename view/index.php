@@ -70,7 +70,6 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="admin7">
-          <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span></a></li>
           <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
           <li>
             <div class="user_admin dropdown" id="admin8"> 

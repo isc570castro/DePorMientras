@@ -41,8 +41,8 @@
 </div>
 
 <div class="row">
- <div class="col-xs-6 col-lg-6" style="padding-right: 0px;">
-  <div class="btn-group btn-group-sm" role="group" aria-label="...">
+ <div class="col-xs-12 col-sm-12 col-lg-7" style="padding-right: 0px;">
+  <div class="btn-group form-group btn-group-sm" role="group" aria-label="...">
     <button type="button" class="btn btn-default">Todas</button>
     <button type="button" class="btn btn-default" data-toggle="tooltip" title="Llamada"><span class="glyphicon glyphicon-earphone"></span></button>
     <button type="button" class="btn btn-default" data-toggle="tooltip" title="Reunión"><span class="glyphicon glyphicon-user"></span></button>
@@ -54,15 +54,14 @@
   </div>
 </div>
 
-<div class="col-xs-6 col-lg-6" align="right">
-  <div class="btn-group btn-group-sm" role="group" aria-label="...">
+<div class="col-xs-12 col-sm-12 col-lg-5">
+  <div class="btn-group form-group btn-group-sm" role="group">
     <button type="button" class="btn btn-default">Planeado</button>
     <button type="button" class="btn btn-default">Vencida</button>
     <button type="button" class="btn btn-default">Hoy</button>
     <button type="button" class="btn btn-default">Mañana</button>
     <button type="button" class="btn btn-default">Esta semana</button>
     <button type="button" class="btn btn-default">Próxima semana</button>
-    <button type="button" class="btn btn-default">Seleccionar periodo</button>
   </div>
 </div>
 </div>
