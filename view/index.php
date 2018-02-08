@@ -66,7 +66,7 @@
               <li><a href="?c=informe"><span class="glyphicon glyphicon-list"></span> Informe</a></li>
             </ul>
           </li>
-          <li class="admin4"><a href="?c=administracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+          <li class="admin4"><a href="?c=configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="admin7">
