@@ -25,7 +25,7 @@
 <div class="col-xs-4 col-sm-12 col-md-2 col-lg-4" align="right">
   <div class="btn-group">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Buscar">
+      <input type="text" class="form-control" placeholder="Buscar" id="buscar" onkeyup="consultas();">
     </div> 
   </div>
   <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
@@ -36,7 +36,7 @@
        <li><a href="#"> Exportar resultados del filtro </a></li> 
      </ul>
    </div>
-  </div>
+ </div>
 </div>
 </div>
 
@@ -69,35 +69,12 @@
 <!--Fin de Encabezado-->
 
 <!-- Inicio del contenedor -->
-<div class="table-responsive" id="tbl">
-  <table class="table table-hover">
-    <tr>
-      <th>Completado</th>
-      <th>Actividad</th>
-      <th>Usuario</th>
-      <th>Negocio</th>
-      <th>Organización</th>
-      <th>Fecha</th>
-      <th>Hora</th>
-      <th>Duración</th>
-      <th>Notas</th> 
-      <th>Acción</th>
-    </tr>
-    <?php foreach($this->model->Listar() as $r): ?>
-      <tr>
-        <td><input type="checkbox" id="checkEstado" <?php if($r->estado==1){ ?> checked <?php } ?> onclick="cambiaEstado(<?php echo $r->idActividad; ?>)"></td>
-        <td><?php echo $r->tipo ?></td>
-        <td><?php echo $r->usuario ?></td>
-        <td><?php echo $r->tituloNegocio ?></td>
-        <td><?php echo $r->nombreOrganizacion ?></td>
-        <td><?php echo $r->fecha ?></td>
-        <td><?php echo $r->hora ?></td>
-        <td><?php echo $r->duracion ?></td>
-        <td><?php echo $r->notas ?></td>
-        <td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(<?php echo  $r->idActividad; ?>, <?php echo  "'".$r->tipo."'"; ?>,<?php echo  "'".$r->usuario."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?>,<?php echo  "'".$r->nombreOrganizacion."'"; ?>,<?php echo  "'".$r->fecha."'"; ?>,<?php echo  "'".$r->hora."'"; ?>,<?php echo  "'".$r->duracion."'"; ?>,<?php echo  "'".$r->notas."'"; ?>)"> <span class="glyphicon glyphicon-refresh"></span></a></td>
-      </tr>
-    <?php endforeach; ?>
-  </table>
+<div class="table-responsive" id="tbl">  
+
+  <div id="resultadoBusqueda">
+   <!--Aqui se vera a tabla de resultados-->
+ </div>
+
 </div>
 <!-- Fin del contenedor -->
 
@@ -185,7 +162,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-              <select class="form-control" name="idContacto" id="selectIdPersonas">
+              <select class="form-control" name="idCliente" id="selectIdPersonas">
                <option value="">Seleccione una persona</option>
                <?php foreach ($this->modelPersona->Listar() as $persona): ?>
                 <option value="<?php echo $persona->idCliente; ?>"><?php echo $persona->nombrePersona; ?></option>
@@ -270,7 +247,7 @@
   }  
 
   function myFunctionEditar(idActividad, tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
-
+    alert("entra");
     $('#txtIdActividad').val(idActividad);  
     $('#txtTipo').val(tipo); 
     $('#txtUsuario').val(usuario);  
@@ -336,7 +313,7 @@
       data: datos
     }).done(function(respuesta){
       console.log(JSON.stringify(respuesta));
-       $("#selectIdOrganizaciones").empty();
+      $("#selectIdOrganizaciones").empty();
       var selector = document.getElementById("selectIdOrganizaciones");
       for (var i in respuesta) {
         selector.options[0] = new Option(respuesta[i].nombreOrganizacion,respuesta[i].idOrganizacion);
@@ -345,7 +322,9 @@
     });
   }
 
+  //Metodo para cambiar el estado en la base de datos de acuerdo al idActividad
   cambiaEstado = function(idActividad){
+    alert(idActividad);
    if( $('#checkEstado').prop('checked') ) 
     var estado=0;
   else estado=1; 
@@ -355,8 +334,20 @@
     type: "POST",
     data: datos
   }).done(function(respuesta){
+      //Muestra mensaje de correcto cambio
       $("#mensajejs").html('<div class="alert alert-success alert-dismissible" role="alert" style="margin-bottom: 0px;"><button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button><strong><center>'+respuesta+'</center></strong></div>');
-  });
+    });
 }
+
+window.onload=function(){
+  consultas();
+}
+ //Metodo de busqueda por ajax
+ consultas = function (){ 
+   var busqueda=$("#buscar").val();
+   $.post("index.php?c=Actividades&a=Consultas", {valorBusqueda: busqueda}, function(mensaje) {
+    $("#resultadoBusqueda").html(mensaje);
+  });
+ }
 </script>
 

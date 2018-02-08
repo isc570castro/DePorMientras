@@ -119,7 +119,6 @@ class Actividad
 				$idActividad
 			)
 		);
-		
 	}
 
 	//Metodo para eliminar actividades
@@ -167,4 +166,20 @@ class Actividad
 			die($e->getMessage());
 		}
 	} 
+
+
+	public function ConsultaActividades($valor)
+	{
+		try
+		{
+			$stm = $this->pdo->prepare("SELECT * FROM actividades, usuarios, negocios, organizaciones WHERE actividades.idUsuario = usuarios.idUsuario AND actividades.idNegocio=negocios.idNegocio AND organizaciones.idOrganizacion = actividades.idOrganizacion AND tipo like '%$valor%' || nombreOrganizacion like '%$valor%'");
+			$stm->execute();
+
+			return $stm->fetchAll(PDO::FETCH_OBJ);
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
 }
