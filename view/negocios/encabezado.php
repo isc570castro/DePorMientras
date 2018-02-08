@@ -14,34 +14,43 @@
   
   <div class="col-xs-2 col-sm-4 col-md-3 col-lg-4" align="center">
     <div class="btn-group">
-      <h6> $2 755,37 - 372 negocios  <span class="glyphicon glyphicon-question-sign"></span></h6>
-    </div>
-  </div>
+      <?php $Contador = $this->model->Contador(); 
+      if ($Contador == 1) { ?>
 
-  <div class="col-xs-5 col-sm-4 col-md-5 col-lg-4" align="right">
-    <div class="btn-group">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Buscar">
-      </div> 
+        <h5><strong> $2 755,37 - <?php echo ($Contador) ?> Negocio</strong></h5>
+        <?php 
+
+      }else { ?>
+        <h5><strong> $2 755,37 - <?php echo ($Contador) ?> Negocios</strong></h5>
+
+        <?php } ?>
+      </div>
     </div>
 
-    <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
-      <div class="dropdown">
-       <button class="btn btn-warning dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-       Ver Negocios</button>
-       <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
-         <li><a href="#">AMMMEC</a></li>
-         <li><a href="#">DINGO</a></li> 
-         <li><a href="#">PAULS FANS</a></li> 
-       </ul>
-     </div>
-   </div> 
+    <div class="col-xs-5 col-sm-4 col-md-5 col-lg-4" align="right">
+      <div class="btn-group">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar">
+        </div> 
+      </div>
+
+      <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
+        <div class="dropdown">
+         <button class="btn btn-warning dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+         Ver Negocios</button>
+         <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
+           <li><a href="#">AMMMEC</a></li>
+           <li><a href="#">DINGO</a></li> 
+           <li><a href="#">PAULS FANS</a></li> 
+         </ul>
+       </div>
+     </div> 
+   </div>
  </div>
-</div>
 
 
-<!--Inicio modal de añadir negocio -->
-<div class="modal fade" id="añadirnegocio" role="dialog">
+ <!--Inicio modal de añadir negocio -->
+ <div class="modal fade" id="añadirnegocio" role="dialog">
   <div class="modal-dialog">
     <form  method="post" action="actualizarMateria.php" enctype="multipart/form-data" onsubmit="return actual();" >
       <!-- Modal content-->
@@ -52,31 +61,37 @@
         </div>
         <div class="modal-body">  
           <!-- Cuerpo -->
-          <form action="" method="post">
+          
+          <div class="form-group">
+            <h5>Nombre de la persona de contacto</h5>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-user"></span></span>
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="idCliente">
+              </div>
+            </div>
+
             <div class="form-group">
-              <h5>Nombre de la persona de contacto</h5>
+              <h5>Nombre de la organización</h5>
               <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">
-                  <span class="glyphicon glyphicon-user"></span></span>
-                  <input type="text" class="form-control" aria-describedby="basic-addon1">
+                <span class="input-group-addon" id="basic-addon2">
+                  <span class="glyphicon glyphicon-briefcase"></span></span>
+                  <input type="text" class="form-control"  name="idOrganizacion">
                 </div>
               </div>
+
               <div class="form-group">
-                <h5>Nombre de la organización</h5>
+                <h5>Título del negocio</h5>
+                <input type="text" class="form-control" name="nombreNegocio">
+              </div>
+
+              <div class="form-group">
+                <h5>Clave del negocio</h5>
                 <div class="input-group">
                   <span class="input-group-addon" id="basic-addon2">
-                    <span class="glyphicon glyphicon-briefcase"></span></span>
+                    <span class="glyphicon glyphicon-qrcode"></span></span>
                     <input type="text" class="form-control" aria-describedby="basic-addon2">
                   </div>
-                </div>
-                <div class="form-group">
-                  <h5>Título del negocio</h5>
-                  <input type="text" class="form-control">
-                </div>
-
-                <div class="form-group">
-                  <h5>Clave del negocio</h5>
-                  <input type="text" class="form-control">
                 </div>
 
                 <div class="row">
@@ -124,19 +139,29 @@
                   <h5>Fecha de cierre prevista</h5>
                   <input type="date" class="form-control">
                 </div>
-              </form>
-              <!-- fin cuerpo -->
-            </div>
-            <div class="modal-footer">
-              <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
-                <input type="submit" class="btn btn-success" value="Guardar" >
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+
+                <h5>% Ponderación</h5>
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>25 %</option>
+                    <option>50 %</option>
+                    <option>75 %</option>
+                    <option>100 %</option>
+                  </select>
+                </div>
+
+                <!-- fin cuerpo -->
+              </div>
+              <div class="modal-footer">
+                <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
+                  <input type="submit" class="btn btn-success" value="Guardar" >
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>     
-    <!--fin modal de añadir negocio -->
+          </form>
+        </div>
+      </div>     
+      <!--fin modal de añadir negocio -->
 
-    <?php include($this->contenedor); ?>
+      <?php include($this->contenedor); ?>

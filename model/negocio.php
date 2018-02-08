@@ -6,6 +6,7 @@ class Negocio
 	public $idEtapa;
 	public $idOrganizacion;
 	public $idCliente;
+	public $clave;
 	public $tituloNegocio;
 	public $valorNegocio;
 	public $tipoMoneda;
@@ -31,7 +32,7 @@ class Negocio
 	{
 		try
 		{
-			$stm = $this->pdo->prepare("SELECT * FROM negocios");
+			$stm = $this->pdo->prepare("SELECT * FROM negocios, organizaciones, pertenece, etapasventas, personas WHERE negocios.idOrganizacion = organizaciones.idOrganizacion AND negocios.idNegocio = pertenece.idNegocio AND pertenece.idCliente = personas.idCliente AND negocios.idEtapa = etapasventas.idEtapa");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -46,7 +47,7 @@ class Negocio
 	{
 		try
 		{
-			$stm = $this->pdo->prepare("SELECT COUNT(*) FROM actividades ");
+			$stm = $this->pdo->prepare("SELECT COUNT(*) FROM negocios ");
 			$stm->execute();
 			$cont = implode($stm->fetchAll(PDO::FETCH_COLUMN));
 			return $cont;	
