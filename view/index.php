@@ -81,6 +81,7 @@
               <b class="caret"></b> 
             </a>
             <ul class="dropdown-menu">
+
               <div class="top_pointer"></div>
               <li> <a href="profile.html"><i class="fa fa-user"></i><span class="glyphicon glyphicon-user">
               </span> Perfil de Usuario</a>
@@ -93,12 +94,13 @@
     </ul>      
   </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
-
+</nav>
 <div class="panel-default" id="pan">
  <?php include($page); ?>
 </div>
 
-</nav>
+
+
 <!--Fin de Encabezado--> 
 
 
