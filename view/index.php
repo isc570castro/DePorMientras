@@ -82,24 +82,39 @@
             </a>
             <ul class="dropdown-menu">
 
-              <div class="top_pointer"></div>
-              <li> <a href="profile.html"><i class="fa fa-user"></i><span class="glyphicon glyphicon-user">
-              </span> Perfil de Usuario</a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li> <a href="login.html"><i class="fa fa-power-off"></i><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a> </li>
-          </ul>
-        </div>
-      </li>
-    </ul>      
-  </div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
-</nav>
-<div class="panel-default" id="pan">
- <?php include($page); ?>
-</div>
+              <li><a href=""><span class="glyphicon glyphicon-tasks"></span> Panel</a></li>
+              <li><a href="?c=informe"><span class="glyphicon glyphicon-list"></span> Informe</a></li>
+            </ul>
+          </li>
+          <li class="admin4"><a href="?c=negocios&a=ConfigurarEmbudos"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+        </ul>
 
-
+        <ul class="nav navbar-nav navbar-right" id="admin7">
+          <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+          <li>
+            <div class="user_admin dropdown" id="admin8"> 
+              <a href="javascript:void(0);" data-toggle="dropdown">
+                <img src="assets/imagenes/user.png" />
+                <span class="user_adminname"> John Doe</span> 
+                <b class="caret"></b> 
+              </a>
+              <ul class="dropdown-menu">
+                <div class="top_pointer"></div>
+                <li> <a href="profile.html"><i class="fa fa-user"></i><span class="glyphicon glyphicon-user">
+                </span> Perfil de Usuario</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li> <a href="login.html"><i class="fa fa-power-off"></i><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a> </li>
+            </ul>
+          </div>
+        </li>
+      </ul>      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>  
+  <div class="panel-default" id="pan">
+   <?php include($page); ?>
+ </div>
 
 <!--Fin de Encabezado--> 
 

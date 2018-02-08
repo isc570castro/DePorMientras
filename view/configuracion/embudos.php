@@ -1,14 +1,12 @@
-<div class="containerperso">
-  <div class="col-xs-8 col-sm-9">
-    <div class="row">
-      <div class="col-xs-10 col-sm-9 col-lg-9">
-        <h3>Personalizar etapas de venta</h3>
-      </div>
-      <br>
-      <div class="col-xs-2 col-lg-3" align="right">
-        <a href="" class="btn btn-success btn-xs">Añadir embudo nuevo</a>
-      </div> 
+<div class="col-xs-8 col-sm-9">
+  <div class="row">
+    <div class="col-xs-10 col-sm-9 col-lg-9">
+      <h3>Personalizar etapas de venta</h3>
     </div>
+    <br>
+    <div class="col-xs-2 col-lg-3" align="right">
+      <a href="" class="btn btn-success btn-xs">Añadir embudo nuevo</a>
+    </div> 
   </div>
 </div>
 <div class="margen">
@@ -43,7 +41,7 @@
           <div class="row">
             <div class="col-xs-12 col-lg-12">
               <div class="jumbotron">
-                
+
               </div>
             </div>
           </div>
@@ -56,3 +54,4 @@
     </div>
   </div>
 </div>
+  
