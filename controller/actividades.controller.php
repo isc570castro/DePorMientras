@@ -60,7 +60,7 @@ class ActividadesController{
 		}
 		catch(Exception $e)
 		{
-			//die($e->getMessage());
+			die($e->getMessage());
 			$this->error=true;
 			$this->mensaje= "Se ha producido un error al guardar la actividad";
 			$this->Index();

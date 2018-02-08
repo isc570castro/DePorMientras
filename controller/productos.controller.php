@@ -1,11 +1,11 @@
 <?php 
-require_once 'model/productos.php';
+require_once 'model/producto.php';
 class ProductosController{
 
 	private $model;
 
 	public function __CONSTRUCT(){
-		$this->model = new Productos();
+		$this->model = new Producto();
 	}
 
 	public function Index(){

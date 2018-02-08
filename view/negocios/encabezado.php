@@ -74,6 +74,11 @@
                   <input type="text" class="form-control">
                 </div>
 
+                <div class="form-group">
+                  <h5>Clave del negocio</h5>
+                  <input type="text" class="form-control">
+                </div>
+
                 <div class="row">
                   <div class="form-group">
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-right: 0px;">

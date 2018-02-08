@@ -1,11 +1,11 @@
 <?php 
-require_once 'model/personas.php';
+require_once 'model/persona.php';
 class PersonasController{
 
   private $model;
 
   public function __CONSTRUCT(){
-   $this->model = new Personas();
+   $this->model = new Persona();
 }
 
 public function Index(){
