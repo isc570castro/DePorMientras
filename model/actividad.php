@@ -29,9 +29,8 @@ class Actividad
 	{
 		try
 		{
-			$stm = $this->pdo->prepare("SELECT * FROM actividades, usuarios, negocios, organizaciones WHERE actividades.idUsuario = usuarios.idUsuario AND actividades.idNegocio=negocios.idNegocio AND organizaciones.idOrganizacion = actividades.idOrganizacion");
+			$stm = $this->pdo->prepare("SELECT * FROM actividades, usuarios, negocios, organizaciones, personas WHERE actividades.idUsuario = usuarios.idUsuario AND actividades.idNegocio=negocios.idNegocio AND organizaciones.idOrganizacion = actividades.idOrganizacion AND actividades.idCliente=personas.idCliente");
 			$stm->execute();
-
 			return $stm->fetchAll(PDO::FETCH_OBJ);
 		}
 		catch(Exception $e)

@@ -130,7 +130,10 @@ class ActividadesController{
 	//Metodo para realizar las consultas de acuerdo al valor de busqueda
 	public function Consultas(){
 		$valorBusqueda=$_REQUEST['valorBusqueda'];
+		if (!$valorBusqueda=="")
 		$resultado=$this->model->ConsultaActividades($valorBusqueda);
+		else
+		$resultado=$this->model->Listar();	
 		echo '<table class="table table-hover">
 		<tr>
 		<th>Completado</th>
@@ -148,11 +151,10 @@ class ActividadesController{
 			echo "No hay coincidencias";
 		}
 		foreach ($resultado as $r) :
-			echo $r->estado;
 			echo '
 			<tr>
 			<td>
-			<input type="checkbox" id="checkEstado" onclick="cambiaEstado(' . $r->idActividad . ')"></td>
+			<input type="checkbox"'; if($r->estado==1){ echo 'checked=true'; } echo 'id="checkEstado" onclick="cambiaEstado(' . $r->idActividad . ')"></td>
 			<td>'. $r->tipo .'</td>
 			<td>'. $r->usuario .'</td>
 			<td>'. $r->tituloNegocio .'</td>
@@ -161,7 +163,8 @@ class ActividadesController{
 			<td>'. $r->hora .'</td>
 			<td>'. $r->duracion .'</td>
 			<td>'. $r->notas .'</td>
-			<td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(' . $r->idActividad . ',' . $r->tipo . ',' . $r->usuario . ',' . $r->tituloNegocio. ','. $r->nombreOrganizacion. ',' .$r->fecha . ',' . $r->hora . ',' . $r->duracion . ',' . $r->notas .')"> <span class="glyphicon glyphicon-refresh"></span></a></td>
+			<td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar('.$r->idActividad; ?> , <?php echo  "'".$r->tipo."'"; ?> , <?php echo  "'".$r->tituloNegocio."'"; ?> , <?php echo  $r->idNegocio; ?> , <?php echo  "'".$r->nombreOrganizacion."'"; ?> , <?php echo  $r->idOrganizacion; ?> , <?php echo  "'".$r->fecha."'"; ?>  
+				, <?php echo  "'".$r->hora."'"; ?> , <?php echo  "'".$r->duracion."'"; ?> , <?php echo  "'".$r->notas."'"; ?> , <?php echo  "'".$r->nombrePersona ."'"; ?> , <?php echo  $r->idCliente; echo ')"> <span class="glyphicon glyphicon-refresh"></span></a></td>
 			</tr>';
 		endforeach;
 	}

@@ -196,7 +196,7 @@
   <div class="modal-footer">
     <div class="col-xs-12 col-sm-12 col-lg-12" align="right">
 
-      <a href="#" id="" class="btn btn-danger" data-toggle="modal" data-target="#mEliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar" onclick="myFunctionEliminar()"><span class="glyphicon glyphicon-trash"></span></a>
+      <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#mEliminar" data-toggle="tooltip" title="Eliminar organización" id="btnEliminar" onclick="myFunctionEliminar()"><span class="glyphicon glyphicon-trash"></span></a>
 
       <input type="submit" class="btn btn-success" value="Guardar" >
       <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>    
@@ -246,24 +246,35 @@
     $('#txtTipo').val($tipo);
   }  
 
-  function myFunctionEditar(idActividad, tipo, usuario, tituloNegocio, nombreOrganizacion, fecha, hora, duracion, notas) {
-    alert("entra");
+function myFunctionEditar(idActividad, tipo, tituloNegocio, idNegocio,  nombreOrganizacion, idOrganizacion, fecha, hora, duracion, notas, nombrePersona, idCliente) {
+
     $('#txtIdActividad').val(idActividad);  
-    $('#txtTipo').val(tipo); 
-    $('#txtUsuario').val(usuario);  
-    $('#txtTituloNegocio').val(tituloNegocio);
-    $('#txtNombreOrganizacion').val(nombreOrganizacion);
+    $('#txtTipo').val(tipo);     
     $('#txtFecha').val(fecha);
     $('#txtHora').val(hora);
     $('#txtDuracion').val(duracion);
     $('#txtNotas').val(notas);
     $('#btnEliminar').show();
     $('#labTitulo').html("Editar actividad");
+
+    //----- Select de negocios -------
+    $("#selectIdNegocio").empty();
+    var selectNegocios = document.getElementById("selectIdNegocio");
+    selectNegocios.options[0] = new Option(tituloNegocio , idNegocio);
+
+    //----- Select de personas --------
+    $("#selectIdPersonas").empty();
+    var selectPersonas = document.getElementById("selectIdPersonas");
+    selectPersonas.options[0] = new Option(nombrePersona , idCliente);
+
+    //--- Select de organizaciones ---
+    $("#selectIdOrganizaciones").empty();
+    var selectOrganizaciones = document.getElementById("selectIdOrganizaciones");
+    selectOrganizaciones.options[0] = new Option(nombreOrganizacion , idOrganizacion);
   }
 
   function myFunctionNuevo() {
     $('#txtTipo').val(""); 
-    $('#txtUsuario').val("");  
     $('#txtTituloNegocio').val("");
     $('#txtNombreOrganizacion').val("");
     $('#txtFecha').val("");
@@ -324,7 +335,6 @@
 
   //Metodo para cambiar el estado en la base de datos de acuerdo al idActividad
   cambiaEstado = function(idActividad){
-    alert(idActividad);
    if( $('#checkEstado').prop('checked') ) 
     var estado=0;
   else estado=1; 
@@ -345,9 +355,14 @@ window.onload=function(){
  //Metodo de busqueda por ajax
  consultas = function (){ 
    var busqueda=$("#buscar").val();
-   $.post("index.php?c=Actividades&a=Consultas", {valorBusqueda: busqueda}, function(mensaje) {
+   if(busqueda==""){
+    $.post("index.php?c=Actividades&a=Consultas", {valorBusqueda: busqueda}, function(mensaje) {
+      $("#resultadoBusqueda").html(mensaje);
+    });
+  }
+  $.post("index.php?c=Actividades&a=Consultas", {valorBusqueda: busqueda}, function(mensaje) {
     $("#resultadoBusqueda").html(mensaje);
   });
- }
+}
 </script>
 
