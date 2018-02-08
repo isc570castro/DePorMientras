@@ -66,7 +66,7 @@
               <li><a href="?c=informe"><span class="glyphicon glyphicon-list"></span> Informe</a></li>
             </ul>
           </li>
-          <li class="admin4"><a href="?c=configuracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
+          <li class="admin4"><a href="?c=negocios&a=ConfigurarEmbudos"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="admin7">
@@ -91,12 +91,10 @@
       </ul>      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-  
+</nav>  
   <div class="panel-default" id="pan">
    <?php include($page); ?>
  </div>
-
-</nav>
 <!--Fin de Encabezado--> 
 
 
