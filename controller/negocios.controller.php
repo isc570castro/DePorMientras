@@ -1,8 +1,18 @@
 <?php 
+require_once 'model/negocio.php';
 
 class NegociosController{
 
   private $contenedor;
+
+  public function __CONSTRUCT()
+  {
+    try{
+      $this->model = new Negocio();
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 
   public function Index(){
     $this->contenedor="view/negocios/negocios.php";
@@ -10,7 +20,7 @@ class NegociosController{
     require_once 'view/index.php';
   }
 
-    public function Index2(){
+  public function Index2(){
     $page="view/negocios/encabezado.php";
     require_once 'view/index.php';
   }
