@@ -95,8 +95,8 @@ class ActividadesController{
 		$datos = array();
 		foreach ($this->model->ListarPersonasPorNegocio($idNegocio) as $persona):
 			$row_array['idCliente']  = $persona->idCliente;
-			$row_array['nombrePersona']  = $persona->nombrePersona;
-			array_push($datos, $row_array);
+		$row_array['nombrePersona']  = $persona->nombrePersona;
+		array_push($datos, $row_array);
 		endforeach;		
 		echo json_encode($datos, JSON_FORCE_OBJECT);
 	}
@@ -108,8 +108,8 @@ class ActividadesController{
 		$datos = array();
 		foreach ($this->model->ListarOrganizacionesPorNegocio($idNegocio) as $organizacion):
 			$row_array['idOrganizacion']  = $organizacion->idOrganizacion;
-			$row_array['nombreOrganizacion']  = $organizacion->nombreOrganizacion;
-			array_push($datos, $row_array);
+		$row_array['nombreOrganizacion']  = $organizacion->nombreOrganizacion;
+		array_push($datos, $row_array);
 		endforeach;
 		
 		echo json_encode($datos, JSON_FORCE_OBJECT);
@@ -133,36 +133,186 @@ class ActividadesController{
 		$resultado=$this->model->ConsultaActividades($valorBusqueda);
 		echo '<table class="table table-hover">
 		<tr>
-		<th>Completado</th>
-		<th>Actividad</th>
-		<th>Usuario</th>
-		<th>Negocio</th>
-		<th>Organización</th>
-		<th>Fecha</th>
-		<th>Hora</th>
-		<th>Duración</th>
-		<th>Notas</th> 
-		<th>Acción</th>
+			<th>Completado</th>
+			<th>Actividad</th>
+			<th>Usuario</th>
+			<th>Negocio</th>
+			<th>Organización</th>
+			<th>Fecha</th>
+			<th>Hora</th>
+			<th>Duración</th>
+			<th>Notas</th> 
+			<th>Acción</th>
 		</tr>';
 		if($resultado==null){
 			echo "No hay coincidencias";
 		}
 		foreach ($resultado as $r) :
 			echo $r->estado;
-			echo '
-			<tr>
+		echo '
+		<tr>
 			<td>
-			<input type="checkbox" id="checkEstado" onclick="cambiaEstado(' . $r->idActividad . ')"></td>
-			<td>'. $r->tipo .'</td>
-			<td>'. $r->usuario .'</td>
-			<td>'. $r->tituloNegocio .'</td>
-			<td>'. $r->nombreOrganizacion .'</td>
-			<td>'. $r->fecha .'</td>
-			<td>'. $r->hora .'</td>
-			<td>'. $r->duracion .'</td>
-			<td>'. $r->notas .'</td>
-			<td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(' . $r->idActividad . ',' . $r->tipo . ',' . $r->usuario . ',' . $r->tituloNegocio. ','. $r->nombreOrganizacion. ',' .$r->fecha . ',' . $r->hora . ',' . $r->duracion . ',' . $r->notas .')"> <span class="glyphicon glyphicon-refresh"></span></a></td>
+				<input type="checkbox" id="checkEstado" onclick="cambiaEstado(' . $r->idActividad . ')"></td>
+				<td>'. $r->tipo .'</td>
+				<td>'. $r->usuario .'</td>
+				<td>'. $r->tituloNegocio .'</td>
+				<td>'. $r->nombreOrganizacion .'</td>
+				<td>'. $r->fecha .'</td>
+				<td>'. $r->hora .'</td>
+				<td>'. $r->duracion .'</td>
+				<td>'. $r->notas .'</td>
+				<td><a href="#" class="btn btn-success btn-xs" data-toggle="modal" data-target="#añadiractividad" onclick="myFunctionEditar(' . $r->idActividad . ',' . $r->tipo . ',' . $r->usuario . ',' . $r->tituloNegocio. ','. $r->nombreOrganizacion. ',' .$r->fecha . ',' . $r->hora . ',' . $r->duracion . ',' . $r->notas .')"> <span class="glyphicon glyphicon-refresh"></span></a></td>
 			</tr>';
-		endforeach;
+			endforeach;
+		}
+
+
+		public function Exportar(){
+			require 'assets/plugins/PHPExcel/Classes/PHPExcel/IOFactory.php';
+	//Consult
+			//$this->listar();
+	
+			$stm = ("SELECT * FROM actividades, usuarios, negocios, organizaciones WHERE actividades.idUsuario = usuarios.idUsuario AND actividades.idNegocio=negocios.idNegocio AND organizaciones.idOrganizacion = actividades.idOrganizacion");
+			echo $stm['tipo'];
+
+	$fila = 3; //Establecemos en que fila inciara a imprimir los datos
+	
+	$gdImage = imagecreatefrompng('assets/imagenes/logoammmec.png');//Logotipo
+	
+	//Objeto de PHPExcel
+	$objPHPExcel  = new PHPExcel();
+	
+	//Propiedades de Documento
+	$objPHPExcel->getProperties()->setCreator(" creador del reporte ")->setDescription("Actividades");
+	
+	//Establecemos la pestaña activa y nombre a la pestaña
+	$objPHPExcel->setActiveSheetIndex(0);
+	$objPHPExcel->getActiveSheet()->setTitle("actividades");
+	
+	$objDrawing = new PHPExcel_Worksheet_MemoryDrawing();
+	$objDrawing->setName('Logotipo');
+	$objDrawing->setDescription('Logotipo');
+	$objDrawing->setImageResource($gdImage);
+	$objDrawing->setRenderingFunction(PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+	$objDrawing->setMimeType(PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+	$objDrawing->setHeight(100);
+	$objDrawing->setCoordinates('B1');
+	$objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+	
+	$estiloTituloReporte = array(
+		'font' => array(
+			'name'      => 'Arial',
+			'bold'      => true,
+			'italic'    => false,
+			'strike'    => false,
+			'size' =>13
+			),
+		'fill' => array(
+			'type'  => PHPExcel_Style_Fill::FILL_SOLID
+			),
+		'borders' => array(
+			'allborders' => array(
+				'style' => PHPExcel_Style_Border::BORDER_NONE
+				)
+			),
+		'alignment' => array(
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+			)
+		);
+	
+	$estiloTituloColumnas = array(
+		'font' => array(
+			'name'  => 'Arial',
+			'bold'  => true,
+			'size' =>10,
+			'color' => array(
+				'rgb' => 'FFFFFF'
+				)
+			),
+		'fill' => array(
+			'type' => PHPExcel_Style_Fill::FILL_SOLID,
+			'color' => array('rgb' => '538DD5')
+			),
+		'borders' => array(
+			'allborders' => array(
+				'style' => PHPExcel_Style_Border::BORDER_THIN
+				)
+			),
+		'alignment' =>  array(
+			'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
+			)
+		);
+	
+	$estiloInformacion = new PHPExcel_Style();
+	$estiloInformacion->applyFromArray( array(
+		'font' => array(
+			'name'  => 'Arial',
+			'color' => array(
+				'rgb' => '000000'
+				)
+			),
+		'fill' => array(
+			'type'  => PHPExcel_Style_Fill::FILL_SOLID
+			),
+		'borders' => array(
+			'allborders' => array(
+				'style' => PHPExcel_Style_Border::BORDER_THIN
+				)
+			),
+		'alignment' =>  array(
+			'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
+			)
+		));
+	
+	$objPHPExcel->getActiveSheet()->getStyle('A1:C1')->applyFromArray($estiloTituloReporte);
+	$objPHPExcel->getActiveSheet()->getStyle('A2:C2')->applyFromArray($estiloTituloColumnas);
+	
+//	$objPHPExcel->getActiveSheet()->setCellValue('B3', 'REPORTE DE PRODUCTOS');
+//	$objPHPExcel->getActiveSheet()->mergeCells('B3:D3');
+	
+	$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+	$objPHPExcel->getActiveSheet()->setCellValue('A2', 'ACTIVIDAD');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+	$objPHPExcel->getActiveSheet()->setCellValue('B2', 'USUARIO');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+	$objPHPExcel->getActiveSheet()->setCellValue('C2', 'NEGOCIO');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+	$objPHPExcel->getActiveSheet()->setCellValue('D2', 'ORGANIZACION');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+	$objPHPExcel->getActiveSheet()->setCellValue('E2', 'FECHA');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(25);
+	$objPHPExcel->getActiveSheet()->setCellValue('F2', 'HORA');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(25);
+	$objPHPExcel->getActiveSheet()->setCellValue('G2', 'DURACION');
+	$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(25);
+	$objPHPExcel->getActiveSheet()->setCellValue('H2', 'NOTAS');
+	
+	//Recorremos los resultados de la consulta y los imprimimos
+	while(!$stm == null){
+
+	
+		$objPHPExcel->getActiveSheet()->setCellValue('A'.$fila, $stm['tipo']);
+		$objPHPExcel->getActiveSheet()->setCellValue('B'.$fila, $stm['idUsuario']);
+		$objPHPExcel->getActiveSheet()->setCellValue('C'.$fila, $stm['idNegocio']);
+		$objPHPExcel->getActiveSheet()->setCellValue('D'.$fila, $stm['idOrganizacion']);
+		$objPHPExcel->getActiveSheet()->setCellValue('E'.$fila, $stm['fecha']);
+		$objPHPExcel->getActiveSheet()->setCellValue('F'.$fila, $stm['hora']);
+		$objPHPExcel->getActiveSheet()->setCellValue('G'.$fila, $stm['duracion']);
+		$objPHPExcel->getActiveSheet()->setCellValue('H'.$fila, $stm['notas']);
+
+		$fila++; //Sumamos 1 para pasar a la siguiente fila
+		//}
+	//}
+
+		header("Content-Type: application/vnd.ms-excel");
+		header('Content-Disposition: attachment;filename="Actividades.csv"');
+		header('Cache-Control: max-age=0');
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save('php://output');
 	}
+	}	
 }
