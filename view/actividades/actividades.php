@@ -22,23 +22,28 @@
   </div>
 </div>
 
+
 <div class="col-xs-4 col-sm-12 col-md-2 col-lg-4" align="right">
-  <div class="btn-group">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Buscar" id="buscar" onkeyup="consultas();">
-    </div> 
+  <form  method="post" action="?c=Actividades&a=Exportar" enctype="multipart/form-data">
+    <div class="btn-group">
+      <div class="form-group">
+        <input type="text" name="valorBusqueda" class="form-control" placeholder="Buscar" id="buscar" onkeyup="consultas();">
+      </div> 
+    </div>
+    <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
+      <div class="dropdown">
+       <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
+       </button>
+       <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
+        <li><button type="submit"> Exportar resultados del filtro </button></li> 
+      </ul>
+    </div>
   </div>
-  <div class="btn-group form-group btn-sm" style="padding-left: 0px; padding-right: 0px;">
-    <div class="dropdown">
-     <button class="btn btn-default dropdown-toggle btn-sm" type="button" id="dropdownMenu1" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-list"></span>
-     </button>
-     <ul class="dropdown-menu dropdown-menu-right btn-sm" aria-labelledby="dropdownMenu1">
-       <li><a href="#"> Exportar resultados del filtro </a></li> 
-     </ul>
-   </div>
- </div>
+</form>
 </div>
+
 </div>
+
 
 <div class="row">
  <div class="col-xs-12 col-sm-12 col-lg-7" style="padding-right: 0px;">
@@ -246,7 +251,7 @@
     $('#txtTipo').val($tipo);
   }  
 
-function myFunctionEditar(idActividad, tipo, tituloNegocio, idNegocio,  nombreOrganizacion, idOrganizacion, fecha, hora, duracion, notas, nombrePersona, idCliente) {
+  function myFunctionEditar(idActividad, tipo, tituloNegocio, idNegocio,  nombreOrganizacion, idOrganizacion, fecha, hora, duracion, notas, nombrePersona, idCliente) {
 
     $('#txtIdActividad').val(idActividad);  
     $('#txtTipo').val(tipo);     
