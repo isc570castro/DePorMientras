@@ -34,6 +34,13 @@ class NegociosController{
     $this->contenedor="view/negocios/timeline.php";
     $this->Index2();
   }
+
+  public function ConfigurarEmbudos(){
+     $page="view/configuracion/menu.php";
+     $contenedor="view/configuracion/embudos.php";
+     require_once 'view/index.php';
+  }
+
 }
 
 ?>
