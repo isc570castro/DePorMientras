@@ -6,12 +6,13 @@ class OrganizacionesController{
   private $model;
   private $pdo;
   public $mensaje;
+  private $error;
   
   public function __CONSTRUCT(){
-     $this->model = new Organizacion();
- }
+   $this->model = new Organizacion();
+}
 
- public function Index(){
+public function Index(){
     $page="view/organizaciones/organizaciones.php";
     require_once 'view/index.php';
 }
@@ -19,37 +20,38 @@ class OrganizacionesController{
 public function Guardar(){
     try
     {
-        $alm = new Organizaciones();
-        $alm->id = $_REQUEST['idOrganizacion'];
-        $alm->Nombre = $_REQUEST['nombreOrganizacion'];
-        $alm->Propietario = $_REQUEST['propietario'];
-        $alm->Direccion = $_REQUEST['direccion'];
-        $alm->PaginaWeb = $_REQUEST['paginaWeb'];
-        $alm->Telefono = $_REQUEST['telefono'];
+        if (!isset($_REQUEST['idOrganizacion'])){
+            header("Location: index.php?c=Organizaciones");
+        }else{
+            $organizacion= new Organizacion();
+            $organizacion->idOrganizacion=$_REQUEST['idOrganizacion'];
+            $organizacion->idUsuario=1;
+            $organizacion->nombreOrganizacion=$_REQUEST['nombreOrganizacion'];
+            $organizacion->direccion=$_REQUEST['direccion'];
+            $organizacion->paginaWeb=$_REQUEST['paginaWeb'];
+            $organizacion->telefono=$_REQUEST['telefono'];
+            $organizacion->clave=$_REQUEST['clave'];
 
-        if(isset($_POST['Actualizar'])){
 
-            if ($alm->id > 0){
-                $this->model->Actualizar($alm); 
+            if($organizacion->idOrganizacion>0){
+                $this->model->Actualizar($organizacion);
+                $this->mensaje="Se han actualizado correctamente los datos";
             }else{
-
-                $this->model->Registrar($alm); 
-                $mensaje="Se ha registrado correctamente la organización";
+                $this->model->Registrar($organizacion);
+                $this->mensaje="Se ha registrado correctamente la organizacion";
             }
-
-        }else if(isset($_POST['Eliminar'])){
-            $this->model->Eliminar($alm);
+            $this->Index();
         }
-        $page="view/organizaciones/organizaciones.php";
-        require_once 'view/index.php';
     }
     catch(Exception $e)
     {
-        $error=true;
-        $mensaje= "Se ha producido un error al guardar la organización";
-        $page="view/organizaciones/organizaciones.php";
-        require_once 'view/index.php';
-    }
+        die($e->getMessage());
+        $this->error=true;
+        $this->mensaje= "Se ha producido un error al guardar la actividad";
+        $this->Index();
+    }   
 }
+
+
 }
 ?>

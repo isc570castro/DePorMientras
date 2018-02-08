@@ -1,12 +1,14 @@
 <?php
 class Organizacion
 {
+	public $idOrganizacion;
+	public $idUsuario;
+	public $nombreOrganizacion;
+	public $direccion;
+	public $paginaWeb;
+	public $telefono;
+	public $clave;
 	private $pdo;    
-	public $Nombre;
-	public $Propietario;
-	public $Direccion;
-	public $PaginaWeb;
-	public $Telefono;
 	
 	public function __CONSTRUCT()
 	{
@@ -50,30 +52,32 @@ class Organizacion
 		}
 	}
 	//Metodo para registrar
-	public function Registrar(Organizaciones $data)
+	public function Registrar(Organizacion $data)
 	{
 		try 
 		{
-			$sql = "INSERT INTO organizaciones (nombreOrganizacion,idUsuario,direccion,paginaWeb,telefono) 
-			VALUES (?, ?, ?, ?, ?)";
-
+			$sql = "INSERT INTO organizaciones 
+			VALUES (?,?,?,?,?,?,?)";
 			$this->pdo->prepare($sql)
 			->execute(
 				array(
-					$data->Nombre,
-					$data->Propietario, 
-					$data->Direccion, 
-					$data->PaginaWeb,
-					$data->Telefono
+					null,
+					$data->idUsuario,
+					$data->nombreOrganizacion, 
+					$data->direccion, 
+					$data->paginaWeb,
+					$data->telefono,
+					$data->clave
 				)
 			);
+
 		} catch (Exception $e) 
 		{
 			die($e->getMessage());
 		}
 	}
 
-	public function Actualizar(Organizaciones $data)
+	public function Actualizar(Organizacion $data)
 	{
 		try 
 		{
@@ -102,7 +106,7 @@ class Organizacion
 		}
 	}
 	            //Metdo para eliminar
-	public function Eliminar(Organizaciones $data)
+	public function Eliminar(Organizacion $data)
 	{
 		try 
 		{
