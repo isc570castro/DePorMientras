@@ -70,25 +70,6 @@
         <li class="admin4"><a href="?c=administracion"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right" id="admin7">
-        <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
-        <li>
-          <div class="user_admin dropdown" id="admin8"> 
-            <a href="javascript:void(0);" data-toggle="dropdown">
-              <img src="assets/imagenes/user.png" />
-              <span class="user_adminname"> John Doe</span> 
-              <b class="caret"></b> 
-            </a>
-            <ul class="dropdown-menu">
-
-              <li><a href=""><span class="glyphicon glyphicon-tasks"></span> Panel</a></li>
-              <li><a href="?c=informe"><span class="glyphicon glyphicon-list"></span> Informe</a></li>
-            </ul>
-          </li>
-          <li class="admin4"><a href="?c=negocios&a=ConfigurarEmbudos"><span class="glyphicon glyphicon-cog"></span> Configuración</a></li>
-        </ul>
-
         <ul class="nav navbar-nav navbar-right" id="admin7">
           <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
           <li>
